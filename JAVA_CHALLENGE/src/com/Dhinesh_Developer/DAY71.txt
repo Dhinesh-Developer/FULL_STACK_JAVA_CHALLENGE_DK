@@ -1,0 +1,85 @@
+mysql> use jdbc;
+Database changed
+mysql> create table sq(
+    -> id int primary key auto_increment,
+    -> name varchar(50) not null,
+    -> age int not null,
+    -> email varchar(50) unique,
+    -> password varchar(50) unique,
+    -> role varchar(50)
+    -> );
+Query OK, 0 rows affected (0.17 sec)
+
+mysql> desc table sq;
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------+
+| id | select_type | table | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra |
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------+
+|  1 | SIMPLE      | sq    | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    1 |   100.00 | NULL  |
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------+
+1 row in set, 1 warning (0.02 sec)
+
+mysql> desc sq;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| id       | int         | NO   | PRI | NULL    | auto_increment |
+| name     | varchar(50) | NO   |     | NULL    |                |
+| age      | int         | NO   |     | NULL    |                |
+| email    | varchar(50) | YES  | UNI | NULL    |                |
+| password | varchar(50) | YES  | UNI | NULL    |                |
+| role     | varchar(50) | YES  |     | NULL    |                |
++----------+-------------+------+-----+---------+----------------+
+6 rows in set (0.04 sec)
+
+mysql> insert into sq(name,age,email,password,role) values ("dhinesh",20,"dhinesh@gmail.com","dhinesh123","admin");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into sq(name,age,email,password,role) values ("kumar",19,"kumar@gmail.com","kumar123","user");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from sq;
++----+---------+-----+-------------------+------------+-------+
+| id | name    | age | email             | password   | role  |
++----+---------+-----+-------------------+------------+-------+
+|  1 | dhinesh |  20 | dhinesh@gmail.com | dhinesh123 | admin |
+|  2 | kumar   |  19 | kumar@gmail.com   | kumar123   | user  |
++----+---------+-----+-------------------+------------+-------+
+2 rows in set (0.00 sec)
+
+mysql> alter table sq
+    -> add domain varchar(50);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from sq;
++----+---------+-----+-------------------+------------+-------+--------+
+| id | name    | age | email             | password   | role  | domain |
++----+---------+-----+-------------------+------------+-------+--------+
+|  1 | dhinesh |  20 | dhinesh@gmail.com | dhinesh123 | admin | NULL   |
+|  2 | kumar   |  19 | kumar@gmail.com   | kumar123   | user  | NULL   |
++----+---------+-----+-------------------+------------+-------+--------+
+2 rows in set (0.00 sec)
+
+mysql> alter table sq
+    -> drop column domain;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from sq;
++----+---------+-----+-------------------+------------+-------+
+| id | name    | age | email             | password   | role  |
++----+---------+-----+-------------------+------------+-------+
+|  1 | dhinesh |  20 | dhinesh@gmail.com | dhinesh123 | admin |
+|  2 | kumar   |  19 | kumar@gmail.com   | kumar123   | user  |
++----+---------+-----+-------------------+------------+-------+
+2 rows in set (0.00 sec)
+
+mysql> alter table sq
+    -> change password passwd;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+mysql> alter table sq
+    -> change password passwd varchar(50);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql>
