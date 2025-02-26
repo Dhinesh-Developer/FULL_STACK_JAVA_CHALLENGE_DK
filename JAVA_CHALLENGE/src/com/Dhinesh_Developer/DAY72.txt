@@ -1,0 +1,193 @@
+Database changed
+mysql> show tables;
++----------------------+
+| Tables_in_jdbc       |
++----------------------+
+| bank                 |
+| emp                  |
+| employee             |
+| employee_details     |
+| employee_details_seq |
+| employee_seq         |
+| sq                   |
+| user                 |
++----------------------+
+8 rows in set (0.12 sec)
+
+mysql> select * from employee;
++------+---------+-------------------+-----------+---------+------+
+| e_id | e_name  | email             | dept      | salary  | edId |
++------+---------+-------------------+-----------+---------+------+
+|  101 | alex    | alex@123          | IT        |   50000 | NULL |
+|  102 | bob     | bob@gmail.com     | sales     |   60000 | NULL |
+|  103 | maran   | maran@gmail.com   | HR        |   60000 | NULL |
+|  104 | akhil   | akhil@gmail.com   | IT        |  100000 | NULL |
+|  105 | kumar   | kumar@gmail.com   | CSE       |  100000 | NULL |
+|  106 | kavitha | kavitha@gmail.com | fifth std |   20000 | NULL |
+|  107 | rahul   | rahul@gmail.com   | HR        | 1341132 | NULL |
+|  108 | virat   | virat@gmail.com   | cricketer |   60000 | NULL |
+|  321 | asdf    | asdf@gmail.com    | asdf      |   21434 | NULL |
++------+---------+-------------------+-----------+---------+------+
+9 rows in set (0.07 sec)
+
+mysql> select e_id,e_name,salary + 3000
+    -> from employee;
++------+---------+---------------+
+| e_id | e_name  | salary + 3000 |
++------+---------+---------------+
+|  101 | alex    |         53000 |
+|  102 | bob     |         63000 |
+|  103 | maran   |         63000 |
+|  104 | akhil   |        103000 |
+|  105 | kumar   |        103000 |
+|  106 | kavitha |         23000 |
+|  107 | rahul   |       1344132 |
+|  108 | virat   |         63000 |
+|  321 | asdf    |         24434 |
++------+---------+---------------+
+9 rows in set (0.00 sec)
+
+mysql> select e_id,e_name, salary - 1000;
+ERROR 1054 (42S22): Unknown column 'e_id' in 'field list'
+mysql> from employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from employee' at line 1
+mysql> select e_id,e_name,salary - 1000
+    -> from employee;
++------+---------+---------------+
+| e_id | e_name  | salary - 1000 |
++------+---------+---------------+
+|  101 | alex    |         49000 |
+|  102 | bob     |         59000 |
+|  103 | maran   |         59000 |
+|  104 | akhil   |         99000 |
+|  105 | kumar   |         99000 |
+|  106 | kavitha |         19000 |
+|  107 | rahul   |       1340132 |
+|  108 | virat   |         59000 |
+|  321 | asdf    |         20434 |
++------+---------+---------------+
+9 rows in set (0.00 sec)
+
+mysql> select e_id,e_name,salary + (salary*10/100)
+    -> from employee;
++------+---------+--------------------------+
+| e_id | e_name  | salary + (salary*10/100) |
++------+---------+--------------------------+
+|  101 | alex    |               55000.0000 |
+|  102 | bob     |               66000.0000 |
+|  103 | maran   |               66000.0000 |
+|  104 | akhil   |              110000.0000 |
+|  105 | kumar   |              110000.0000 |
+|  106 | kavitha |               22000.0000 |
+|  107 | rahul   |             1475245.2000 |
+|  108 | virat   |               66000.0000 |
+|  321 | asdf    |               23577.4000 |
++------+---------+--------------------------+
+9 rows in set (0.00 sec)
+
+mysql> select e_id,e_name,salary-(salary*25/100)
+    -> from employee;
++------+---------+------------------------+
+| e_id | e_name  | salary-(salary*25/100) |
++------+---------+------------------------+
+|  101 | alex    |             37500.0000 |
+|  102 | bob     |             45000.0000 |
+|  103 | maran   |             45000.0000 |
+|  104 | akhil   |             75000.0000 |
+|  105 | kumar   |             75000.0000 |
+|  106 | kavitha |             15000.0000 |
+|  107 | rahul   |           1005849.0000 |
+|  108 | virat   |             45000.0000 |
+|  321 | asdf    |             16075.5000 |
++------+---------+------------------------+
+9 rows in set (0.00 sec)
+
+mysql> select e_id,e_name,salary
+    -> *12
+    -> from employee;
++------+---------+------------+
+| e_id | e_name  | salary
+*12 |
++------+---------+------------+
+|  101 | alex    |     600000 |
+|  102 | bob     |     720000 |
+|  103 | maran   |     720000 |
+|  104 | akhil   |    1200000 |
+|  105 | kumar   |    1200000 |
+|  106 | kavitha |     240000 |
+|  107 | rahul   |   16093584 |
+|  108 | virat   |     720000 |
+|  321 | asdf    |     257208 |
++------+---------+------------+
+9 rows in set (0.00 sec)
+
+mysql> select e_id,e_name,salary*6
+    -> from employee;
++------+---------+----------+
+| e_id | e_name  | salary*6 |
++------+---------+----------+
+|  101 | alex    |   300000 |
+|  102 | bob     |   360000 |
+|  103 | maran   |   360000 |
+|  104 | akhil   |   600000 |
+|  105 | kumar   |   600000 |
+|  106 | kavitha |   120000 |
+|  107 | rahul   |  8046792 |
+|  108 | virat   |   360000 |
+|  321 | asdf    |   128604 |
++------+---------+----------+
+9 rows in set (0.00 sec)
+
+mysql> select e_name
+    -> from employee
+    -> where salary > 100000;
++--------+
+| e_name |
++--------+
+| rahul  |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select e_name
+    -> from employee
+    -> where salary <50000;
++---------+
+| e_name  |
++---------+
+| kavitha |
+| asdf    |
++---------+
+2 rows in set (0.00 sec)
+
+mysql> select * from employee
+    -> where salary >=50000;
++------+--------+-----------------+-----------+---------+------+
+| e_id | e_name | email           | dept      | salary  | edId |
++------+--------+-----------------+-----------+---------+------+
+|  101 | alex   | alex@123        | IT        |   50000 | NULL |
+|  102 | bob    | bob@gmail.com   | sales     |   60000 | NULL |
+|  103 | maran  | maran@gmail.com | HR        |   60000 | NULL |
+|  104 | akhil  | akhil@gmail.com | IT        |  100000 | NULL |
+|  105 | kumar  | kumar@gmail.com | CSE       |  100000 | NULL |
+|  107 | rahul  | rahul@gmail.com | HR        | 1341132 | NULL |
+|  108 | virat  | virat@gmail.com | cricketer |   60000 | NULL |
++------+--------+-----------------+-----------+---------+------+
+7 rows in set (0.00 sec)
+
+mysql> select * from employee
+    -> where price <> 50000;
+ERROR 1054 (42S22): Unknown column 'price' in 'where clause'
+mysql> select * from employee
+    -> where salary <> 100000;
++------+---------+-------------------+-----------+---------+------+
+| e_id | e_name  | email             | dept      | salary  | edId |
++------+---------+-------------------+-----------+---------+------+
+|  101 | alex    | alex@123          | IT        |   50000 | NULL |
+|  102 | bob     | bob@gmail.com     | sales     |   60000 | NULL |
+|  103 | maran   | maran@gmail.com   | HR        |   60000 | NULL |
+|  106 | kavitha | kavitha@gmail.com | fifth std |   20000 | NULL |
+|  107 | rahul   | rahul@gmail.com   | HR        | 1341132 | NULL |
+|  108 | virat   | virat@gmail.com   | cricketer |   60000 | NULL |
+|  321 | asdf    | asdf@gmail.com    | asdf      |   21434 | NULL |
++------+---------+-------------------+-----------+---------+------+
+7 rows in set (0.00 sec)
