@@ -1,0 +1,132 @@
+mysql> select * from employee;
++------+---------+-------------------+-----------+---------+------+
+| e_id | e_name  | email             | dept      | salary  | edId |
++------+---------+-------------------+-----------+---------+------+
+|  101 | alex    | alex@123          | IT        |   50000 | NULL |
+|  102 | bob     | bob@gmail.com     | sales     |   60000 | NULL |
+|  103 | maran   | maran@gmail.com   | HR        |   60000 | NULL |
+|  104 | akhil   | akhil@gmail.com   | IT        |  100000 | NULL |
+|  105 | kumar   | kumar@gmail.com   | CSE       |  100000 | NULL |
+|  106 | kavitha | kavitha@gmail.com | fifth std |   20000 | NULL |
+|  107 | rahul   | rahul@gmail.com   | HR        | 1341132 | NULL |
+|  108 | virat   | virat@gmail.com   | cricketer |   60000 | NULL |
+|  321 | asdf    | asdf@gmail.com    | asdf      |   21434 | NULL |
++------+---------+-------------------+-----------+---------+------+
+9 rows in set (0.00 sec)
+
+mysql> select e_id,e_name
+    -> from employee
+    -> where salary >=100000 and dept = "IT";
++------+--------+
+| e_id | e_name |
++------+--------+
+|  104 | akhil  |
++------+--------+
+1 row in set (0.01 sec)
+
+mysql> select e_id,e_name
+    -> from employee
+    -> where salary <50000 or dept = "fifth std";
++------+---------+
+| e_id | e_name  |
++------+---------+
+|  106 | kavitha |
+|  321 | asdf    |
++------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select distinct
+    -> dept from employee;
++-----------+
+| dept      |
++-----------+
+| IT        |
+| sales     |
+| HR        |
+| CSE       |
+| fifth std |
+| cricketer |
+| asdf      |
++-----------+
+7 rows in set (0.01 sec)
+
+mysql> select * from employee
+    -> where salary between 200000 and 300000;
+Empty set (0.00 sec)
+
+mysql> select * from dept
+    -> where e_id in (101,102,103);
+ERROR 1146 (42S02): Table 'jdbc.dept' doesn't exist
+mysql> select * from employee
+    -> where e_id in(101,102,103)
+    -> ;
++------+--------+-----------------+-------+--------+------+
+| e_id | e_name | email           | dept  | salary | edId |
++------+--------+-----------------+-------+--------+------+
+|  101 | alex   | alex@123        | IT    |  50000 | NULL |
+|  102 | bob    | bob@gmail.com   | sales |  60000 | NULL |
+|  103 | maran  | maran@gmail.com | HR    |  60000 | NULL |
++------+--------+-----------------+-------+--------+------+
+3 rows in set (0.01 sec)
+
+mysql> select * from employww
+    -> ;
+ERROR 1146 (42S02): Table 'jdbc.employww' doesn't exist
+mysql> select * from employee
+    -> where salary not in (100000,50000);
++------+---------+-------------------+-----------+---------+------+
+| e_id | e_name  | email             | dept      | salary  | edId |
++------+---------+-------------------+-----------+---------+------+
+|  102 | bob     | bob@gmail.com     | sales     |   60000 | NULL |
+|  103 | maran   | maran@gmail.com   | HR        |   60000 | NULL |
+|  106 | kavitha | kavitha@gmail.com | fifth std |   20000 | NULL |
+|  107 | rahul   | rahul@gmail.com   | HR        | 1341132 | NULL |
+|  108 | virat   | virat@gmail.com   | cricketer |   60000 | NULL |
+|  321 | asdf    | asdf@gmail.com    | asdf      |   21434 | NULL |
++------+---------+-------------------+-----------+---------+------+
+6 rows in set (0.00 sec)
+
+mysql> select * from employee
+    -> where email is not null;
++------+---------+-------------------+-----------+---------+------+
+| e_id | e_name  | email             | dept      | salary  | edId |
++------+---------+-------------------+-----------+---------+------+
+|  101 | alex    | alex@123          | IT        |   50000 | NULL |
+|  102 | bob     | bob@gmail.com     | sales     |   60000 | NULL |
+|  103 | maran   | maran@gmail.com   | HR        |   60000 | NULL |
+|  104 | akhil   | akhil@gmail.com   | IT        |  100000 | NULL |
+|  105 | kumar   | kumar@gmail.com   | CSE       |  100000 | NULL |
+|  106 | kavitha | kavitha@gmail.com | fifth std |   20000 | NULL |
+|  107 | rahul   | rahul@gmail.com   | HR        | 1341132 | NULL |
+|  108 | virat   | virat@gmail.com   | cricketer |   60000 | NULL |
+|  321 | asdf    | asdf@gmail.com    | asdf      |   21434 | NULL |
++------+---------+-------------------+-----------+---------+------+
+9 rows in set (0.00 sec)
+
+mysql> select * from employee
+    -> where e_name like "m%";;
++------+--------+-----------------+------+--------+------+
+| e_id | e_name | email           | dept | salary | edId |
++------+--------+-----------------+------+--------+------+
+|  103 | maran  | maran@gmail.com | HR   |  60000 | NULL |
++------+--------+-----------------+------+--------+------+
+1 row in set (0.01 sec)
+
+ERROR:
+No query specified
+
+mysql> select * from employee
+    -> where e_name like "%r";
++------+--------+-----------------+------+--------+------+
+| e_id | e_name | email           | dept | salary | edId |
++------+--------+-----------------+------+--------+------+
+|  105 | kumar  | kumar@gmail.com | CSE  | 100000 | NULL |
++------+--------+-----------------+------+--------+------+
+1 row in set (0.00 sec)
+
+mysql> select * from student
+    -> where e_name like "%/%%" escape "/";
+ERROR 1146 (42S02): Table 'jdbc.student' doesn't exist
+mysql> select * from employee
+    -> where e_name like "%/%%" escape "/";
+Empty set (0.00 sec)
