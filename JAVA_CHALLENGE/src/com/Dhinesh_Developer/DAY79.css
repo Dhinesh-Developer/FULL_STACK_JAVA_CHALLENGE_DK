@@ -1,0 +1,52 @@
+.external{
+    color: blue;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 2em;
+    font-style: italic;
+}
+
+#div-container{
+    background-color: blue;
+    color: white;
+    text-align: center;
+    border-radius: 25px;
+    border: 5px solid black;
+    transform-origin: 10%;
+}
+
+#myh2{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: larger;
+    padding: 10px;
+    font-weight: 300px;
+}
+
+#myh3{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: x-large;
+    font-weight: 300;
+    padding: 5px;
+}
+
+#myp{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 5px;
+    color: gold;
+    font-style: oblique;
+    font-weight: bolder;
+}
+
+#content{
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px;
+    
+}
+
+#myimage{
+    width: 100px;
+    height: 100px;
+    border-radius: 110px;
+    margin-top: 10px;
+    border: 2px solid black;
+    
+}
